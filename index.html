@@ -1,69 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Mi Web App Premium</title>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<title>Nexora App</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background: linear-gradient(135deg,#1e3c72,#2a5298);
+  color:white;
+  text-align:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.container{
+  background:rgba(255,255,255,0.08);
+  padding:50px;
+  border-radius:20px;
+  backdrop-filter: blur(10px);
+  width:350px;
+  animation:fadeIn 1s ease-in-out;
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+h1{
+  margin-bottom:10px;
+  font-weight:700;
+}
+
+#estado{
+  margin-bottom:25px;
+  font-weight:500;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:500;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.free{
+  background:#ffffff20;
+  color:white;
+}
+
+.free:hover{
+  background:#ffffff40;
+}
+
+.pro{
+  background:#00c9ff;
+  color:white;
+}
+
+.pro:hover{
+  transform:scale(1.05);
+  background:#00a8e8;
+}
+
+.proFeature{
+  background:#00e676;
+  color:white;
+  display:none;
+}
+
+.proFeature:hover{
+  transform:scale(1.05);
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+</style>
 </head>
 
-<body style="font-family:Arial;text-align:center;margin-top:60px;">
+<body>
 
-<h1>Mi Web App</h1>
+<div class="container">
 
+<h1>Nexora</h1>
 <div id="estado"></div>
 
-<br><br>
+<button class="free" onclick="usarFree()">Usar versión FREE</button>
 
-<button onclick="usarFree()" 
-style="padding:10px 25px;background:gray;color:white;border:none;border-radius:6px;">
-Usar versión FREE
-</button>
+<button id="btnPro" class="pro" onclick="irAPagar()">Comprar PRO</button>
 
-<br><br>
+<button id="funcionPro" class="proFeature" onclick="funcionPro()">Acceder a Función PRO</button>
 
-<button id="btnPro" onclick="irAPagar()" 
-style="padding:15px 40px;background:#009ee3;color:white;border:none;border-radius:8px;font-size:16px;">
-Comprar PRO
-</button>
-
-<br><br>
-
-<button id="funcionPro" onclick="funcionPro()" 
-style="padding:15px 40px;background:green;color:white;border:none;border-radius:8px;font-size:16px;display:none;">
-Usar Función PRO
-</button>
+</div>
 
 <script>
 
-let urlParams = new URLSearchParams(window.location.search);
+let params = new URLSearchParams(window.location.search);
 
-if (urlParams.get("pago") === "ok") {
-  localStorage.setItem("plan", "pro");
+if(params.get("pago") === "ok"){
+  localStorage.setItem("plan","pro");
 }
 
 let plan = localStorage.getItem("plan");
 
-if (plan === "pro") {
-  document.getElementById("estado").innerHTML = "<h2>Plan PRO activo</h2>";
-  document.getElementById("funcionPro").style.display = "inline-block";
+if(plan === "pro"){
+  document.getElementById("estado").innerText = "🚀 Plan PRO activo";
+  document.getElementById("funcionPro").style.display = "block";
   document.getElementById("btnPro").style.display = "none";
-} else {
-  document.getElementById("estado").innerHTML = "<h2>Plan FREE</h2>";
+}else{
+  document.getElementById("estado").innerText = "Plan FREE activo";
 }
 
-function usarFree() {
-  alert("Estás usando la versión gratuita");
+function usarFree(){
+  alert("Estás usando la versión gratuita.");
 }
 
-function irAPagar() {
-  window.location.href = "https://mpago.la/287RTsB";
+function irAPagar(){
+  window.location.href = "PEGA_AQUI_TU_LINK_DE_MERCADO_PAGO";
 }
 
-function funcionPro() {
-  alert("Función PRO desbloqueada");
+function funcionPro(){
+  alert("Función PRO desbloqueada correctamente.");
 }
 
 </script>
 
 </body>
-
 </html>
+
